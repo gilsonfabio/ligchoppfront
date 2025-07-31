@@ -13,33 +13,34 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Logo principal */}
         <div className="flex items-center gap-4">
-          <Image
-            src="/images/ligchoppwhite.png"
-            alt="Logo LigChopp"
-            width={120}
-            height={50}
-            className="object-contain"
-          />
+          <Link href="/" className="block text-base font-medium">
+            <Image
+              src="/images/ligchoppwhite.png"
+              alt="Logo LigChopp"
+              width={120}
+              height={50}
+              className="object-contain"
+            />
+          </Link>  
         </div>
-
         {/* Navegação desktop */}
         <nav className="hidden md:flex gap-6 items-center">
-          <Link href="/" className="text-sm font-medium hover:underline">
+          <Link href="/about" className="text-sm font-medium hover:underline">
             Quem somos
           </Link>
-          <Link href="/" className="text-sm font-medium hover:underline">
-            Produtos
+          <Link href="/calc" className="text-sm font-medium hover:underline">
+            Calculadora
           </Link>
-          <Link href="/" className="text-sm font-medium hover:underline">
+          <Link href="https://oktos.com.br" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline">
             Parceiros
           </Link>
-          <Link href="/" className="text-sm font-medium hover:underline">
+          <Link href="https://wa.me/556492386166" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline">
             Contato
           </Link>
         </nav>
 
         {/* Logo secundária (desktop apenas) */}
-        <div className="hidden md:block">
+        <div className="">
           <Image
             src="/images/oktoswhite.png"
             alt="Logo Parceiro"
@@ -61,16 +62,16 @@ export default function Header() {
       {/* Menu mobile */}
       {menuOpen && (
         <div className="md:hidden px-4 pb-4 space-y-3 bg-slate-950 text-white">
-          <Link href="/" className="block text-base font-medium">
+          <Link href="/about" className="block text-base font-medium">
             Quem somos
           </Link>
-          <Link href="/" className="block text-base font-medium">
-            Produtos
+          <Link href="/calc" className="block text-base font-medium">
+            Calculadora
           </Link>
-          <Link href="/" className="block text-base font-medium">
+          <Link href="https://oktos.com.br" target="_blank" rel="noopener noreferrer" className="block text-base font-medium">
             Parceiros
           </Link>
-          <Link href="/" className="block text-base font-medium">
+          <Link href="https://wa.me/556492386166" target="_blank" rel="noopener noreferrer" className="block text-base font-medium">
             Contato
           </Link>
         </div>

@@ -8,11 +8,11 @@ import Image from "next/image"
   
   export default function Faq() {
     return (
-        <div className="flex flex-row items-center justify-center w-full h-full text-white gap-2">
-            <div className="flex items-center gap-4 w-[50%]">
+        <div className="flex flex-col md:flex-row items-center justify-center w-full h-full text-white gap-2">
+            <div className="flex items-center px-2 md:gap-4 w-full md:w-[50%]">
                 <Image src="/images/faq.jpg" alt="Logo LigChopp" width={600} height={200} className="object-contain"/>
             </div>
-            <div className="flex items-center gap-4 w-[50%]">
+            <div className="flex items-center px-2 md:gap-4 w-full md:w-[50%]">
                 <Accordion type="single" collapsible className="w-full" defaultValue="item-1">
                     <h3 className="text-2xl text-yellow-400 font-bold">DÚVIDAS FREQUENTES</h3>
                     <AccordionItem value="item-1">
