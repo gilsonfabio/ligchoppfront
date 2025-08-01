@@ -1,199 +1,117 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import type { MotionProps } from "framer-motion";
 
-export default function Products(){
-    return(
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 bg-slate-900 px-1 md:px-20 mt-5 mb-5">
-            <div className="flex flex-col bg-amber-400">
-                <div className="flex w-full items-center justify-center ">
-                    <Image src={'/images/barriloktos.png'} alt="Barril Oktos" width={250} height={300} />
-                </div>
-                <div className="text-4xl font-black text-black px-10 mb-6">PILSEN</div>
-                <div className="text-2xl font-semibold text-black px-10 mb-10">CHOPP PILSEN TRADICIONAL</div>
-                <div className="text-xl font-normal text-black px-10 mb-10">
-                    Nosso chopp tipo Pilsen, leve, refrescante, com espuma branca, cremosa e notas suaves de lúpulos. Uma boa opção para refrescar nos dias quentes.
-                </div>
-                <div className="flex flex-row w-full items-center justify-between text-xl font-normal text-black ">
-                    <div className=" flex flex-col text-xl font-normal text-black px-10">
-                        <div className=" flex flex-row text-xl font-normal text-black items-center justify-center">
-                            <div className="mr-5">
-                                <Image src={'/images/caneca-de-cerveja.png'} alt="ABV" width={40} height={40} />    
-                            </div>
-                            <div className="text-xl font-bold text-black mt-5 ">
-                                ABV 
-                            </div>
-                        </div>
-                        <div className="text-[18px] font-bold text-black px-10">
-                            Teor Alcoólico
-                        </div>
-                        <div className="text-[18px] font-bold text-black px-10 mb-20">
-                            4,9%
-                        </div>
-                    </div> 
-                    <div className=" flex flex-col text-xl font-normal text-black px-10">
-                        <div className=" flex flex-row text-xl font-normal text-black items-center justify-center">
-                            <div className="mr-5">
-                                <Image src={'/images/cevada.png'} alt="ABV" width={40} height={40} />    
-                            </div>
-                            <div className="text-xl font-bold text-black mt-5 ">
-                                IBU 
-                            </div>
-                        </div>
-                        <div className="text-[18px] font-bold text-black px-10">
-                            Amargor
-                        </div>
-                        <div className="text-[18px] font-bold text-black px-10 mb-20">
-                            12
-                        </div>                        
-                    </div>                    
-                </div> 
-                <div className="flex justify-center mb-6">
-                    <Link href="https://wa.me/556492386166" target="_blank" rel="noopener noreferrer" >
-                        <Button variant="default" className="bg-amber-400 hover:bg-amber-600 border border-amber-600 text-black">
-                            PEÇA O SEU!
-                        </Button>
-                    </Link>
-                </div>
+const products = [
+  {
+    name: "PILSEN",
+    type: "CHOPP PILSEN TRADICIONAL",
+    description:
+      "Nosso chopp tipo Pilsen, leve, refrescante, com espuma branca, cremosa e notas suaves de lúpulos. Uma boa opção para refrescar nos dias quentes.",
+    abv: "4,9%",
+    ibu: "12",
+    bgColor: "bg-amber-400",
+    textColor: "text-black",
+    icon: "/images/icon-pilsen.png",
+  },
+  {
+    name: "PRIMA",
+    type: "CHOPP TIPO PRIMA",
+    description:
+      "Nosso chopp refrescante, lager, levemente maltado com lúpulos alemães. Companheiro ideal para os amantes de chope!",
+    abv: "5,0%",
+    ibu: "18",
+    bgColor: "bg-red-800",
+    textColor: "text-white",
+    icon: "/images/icon-prima.png",
+  },
+  {
+    name: "IPA",
+    type: "CHOPP PURO MALTE",
+    description:
+      "Nosso chopp forte, de coloração âmbar, aroma intenso de lúpulos cítricos, frutados e florais. Combina em qualquer momento e ocasião!",
+    abv: "6,5%",
+    ibu: "50",
+    bgColor: "bg-green-800",
+    textColor: "text-white",
+    icon: "/images/icon-ipa.png",
+  },
+  {
+    name: "CHOPP VINHO",
+    type: "CHOPP PILSEN TRADICIONAL",
+    description:
+      "Você vai apreciar um Chope de Vinho de característica refrescante e suave que combina o sabor do vinho com a textura leve do chope.",
+    abv: "7,2%",
+    ibu: null,
+    bgColor: "bg-purple-800",
+    textColor: "text-white",
+    icon: "/images/icon-vinho.png",
+  },
+];
+
+export default function Products() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 bg-slate-900 px-2 sm:px-2 lg:px-6 py-10">
+      {products.map((product, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: index * 0.1 }}
+          className={`flex flex-col ${product.bgColor} rounded-2xl shadow-xl overflow-hidden hover:scale-[1.02] transition-transform duration-300`}
+        >
+          <div className="flex justify-center py-6">
+            <Image
+              src="/images/barriloktos.png"
+              alt={`Barril ${product.name}`}
+              width={250}
+              height={300}
+            />
+          </div>
+
+          <div className="flex items-center justify-between px-6">
+            <h2 className={`text-2xl font-black ${product.textColor}`}>{product.name}</h2>
+            <Image src={product.icon} alt="Ícone" width={30} height={30} />
+          </div>
+
+          <div className={`text-lg font-semibold ${product.textColor} px-6 mb-4`}>{product.type}</div>
+          <p className={`text-sm ${product.textColor} px-6 mb-6`}>{product.description}</p>
+
+          <div className="flex justify-between px-6 mb-6">
+            <div className="flex flex-col items-center">
+              <Image src="/images/caneca-de-cerveja.png" alt="ABV" width={40} height={40} />
+              <span className={`font-bold text-xs mt-1 ${product.textColor}`}>ABV</span>
+              <span className={`text-sm ${product.textColor}`}>{product.abv}</span>
             </div>
-            <div className="flex flex-col bg-red-800">
-                <div className="flex w-full items-center justify-center ">
-                    <Image src={'/images/barriloktos.png'} alt="Barril Oktos" width={250} height={300} />
-                </div>
-                <div className="text-4xl font-bold text-white px-10 mb-6">PRIMA</div>
-                <div className="text-2xl font-semibold text-white px-10 mb-10">CHOPP TIPO PRIMA</div>
-                <div className="text-xl font-normal text-white px-10 mb-10">
-                    Nosso chopp refrescante, lager, levemente maltado com lúpulos alemães. Companheiro ideal para os amantes de chope!
-                </div>
-                <div className="flex flex-row w-full items-center justify-between text-xl font-normal text-white">
-                    <div className=" flex flex-col text-xl font-normal text-white px-10">
-                        <div className=" flex flex-row text-xl font-normal text-white items-center justify-center">
-                            <div className="mr-5">
-                                <Image src={'/images/caneca-de-cerveja.png'} alt="ABV" width={40} height={40} />    
-                            </div>
-                            <div className="text-xl font-bold text-white mt-5 ">
-                                ABV 
-                            </div>
-                        </div>
-                        <div className="text-[18px] font-bold text-white px-10">
-                            Teor Alcoólico
-                        </div>
-                        <div className="text-[18px] font-bold text-white px-10 mb-20">
-                            5,0%
-                        </div>
-                    </div> 
-                    <div className=" flex flex-col text-xl font-normal text-white px-10">
-                        <div className=" flex flex-row text-xl font-normal text-white items-center justify-center">
-                            <div className="mr-5 text-white">
-                                <Image src={'/images/cevada.png'} alt="ABV" width={40} height={40} />    
-                            </div>
-                            <div className="text-xl font-bold text-white mt-5 ">
-                                IBU 
-                            </div>
-                        </div>
-                        <div className="text-[18px] font-bold text-white px-10">
-                            Amargor
-                        </div>
-                        <div className="text-[18px] font-bold text-white px-10 mb-20">
-                            18
-                        </div>
-                    </div>                                       
-                </div>
-                <div className="flex justify-center mt-6 mb-6">
-                    <Link href="https://wa.me/556492386166" target="_blank" rel="noopener noreferrer" >
-                        <Button variant="default" className="bg-red-800 hover:bg-red-900 border border-red-500 text-white">
-                            PEÇA O SEU!
-                        </Button>
-                    </Link>
-                </div>
-            </div>
-            <div className="flex flex-col bg-green-800">
-                <div className="flex w-full items-center justify-center ">
-                    <Image src={'/images/barriloktos.png'} alt="Barril Oktos" width={250} height={300} />
-                </div>
-                <div className="text-4xl font-bold text-white px-10 mb-6">IPA</div>
-                <div className="text-2xl font-semibold text-white px-10 mb-10">CHOPP PURO MALTE</div>
-                <div className="text-xl font-normal text-white px-10 mb-10">
-                Nosso chopp forte, de coloração âmbar, aroma intenso de lúpulos cítricos, frutados e florais.
-                Combina em qualquer momento e ocasião!
-                </div>
-                <div className="flex flex-row w-full items-center justify-between text-xl font-normal text-white">
-                    <div className=" flex flex-col text-xl font-normal text-black px-10">
-                        <div className=" flex flex-row text-xl font-normal text-white items-center justify-center">
-                            <div className="mr-5">
-                                <Image src={'/images/caneca-de-cerveja.png'} alt="ABV" width={40} height={40} />    
-                            </div>
-                            <div className="text-xl font-bold text-white mt-5 ">
-                                ABV 
-                            </div>
-                        </div>
-                        <div className="text-[18px] font-bold text-white px-10">
-                            Teor Alcoólico
-                        </div>
-                        <div className="text-[18px] font-bold text-white px-10 mb-20">
-                            6,5%
-                        </div>
-                    </div> 
-                    <div className=" flex flex-col text-xl font-normal text-white px-10">
-                        <div className=" flex flex-row text-xl font-normal text-white items-center justify-center">
-                            <div className="mr-5">
-                                <Image src={'/images/cevada.png'} alt="ABV" width={40} height={40} />    
-                            </div>
-                            <div className="text-xl font-bold text-white mt-5 ">
-                                IBU 
-                            </div>
-                        </div>
-                        <div className="text-[18px] font-bold text-white px-10">
-                            Amargor
-                        </div>
-                        <div className="text-[18px] font-bold text-white px-10 mb-20">
-                            50
-                        </div>
-                    </div>                                       
-                </div>
-                <div className="flex justify-center mt-22 md:mt-6 mb-6">
-                    <Link href="https://wa.me/556492386166" target="_blank" rel="noopener noreferrer" >
-                        <Button variant="default" className="bg-green-800 hover:bg-green-900 border border-green-500 text-white">
-                            PEÇA O SEU!
-                        </Button>
-                    </Link>
-                </div> 
-            </div> 
-            <div className="flex flex-col bg-purple-800">
-                <div className="flex w-full items-center justify-center ">
-                    <Image src={'/images/barriloktos.png'} alt="Barril Oktos" width={250} height={300} />
-                </div>
-                <div className="text-4xl font-bold text-white px-10 mb-6">CHOPP VINHO</div>
-                <div className="text-2xl font-semibold text-white px-10 mb-10">CHOPP PILSEN TRADICIONAL</div>
-                <div className="text-xl font-normal text-white px-10 mb-10">
-                    Você vai apreciar um Chope de Vinho de característica refrescante e suave que combina o sabor do vinho com a textura leve do chope.
-                </div>
-                <div className="flex flex-row w-full items-center justify-between text-xl font-normal text-white">
-                    <div className=" flex flex-col text-xl font-normal text-black px-10">
-                        <div className=" flex flex-row text-xl font-normal text-white items-center justify-center">
-                            <div className="mr-5">
-                                <Image src={'/images/caneca-de-cerveja.png'} alt="ABV" width={40} height={40} />    
-                            </div>
-                            <div className="text-xl font-bold text-white mt-5 ">
-                                ABV 
-                            </div>
-                        </div>
-                        <div className="text-[18px] font-bold text-white px-10">
-                            Teor Alcoólico
-                        </div>
-                        <div className="text-[18px] font-bold text-white px-10 mb-20">
-                            7,2%
-                        </div>
-                    </div>                                                         
-                </div>
-                <div className="flex justify-center mt-12 mb-6">
-                    <Link href="https://wa.me/556492386166" target="_blank" rel="noopener noreferrer" >
-                        <Button variant="default" className="bg-purple-800 hover:bg-purple-900 border border-purple-500 text-white">
-                            PEÇA O SEU!
-                        </Button>
-                    </Link>
-                </div>   
-            </div>                     
-        </div>
-    )
+            {product.ibu && (
+              <div className="flex flex-col items-center">
+                <Image src="/images/cevada.png" alt="IBU" width={40} height={40} />
+                <span className={`font-bold text-xs mt-1 ${product.textColor}`}>IBU</span>
+                <span className={`text-sm ${product.textColor}`}>{product.ibu}</span>
+              </div>
+            )}
+          </div>
+
+          <div className="flex justify-center pb-6">
+            <Link
+              href="https://wa.me/556492386166"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                variant="default"
+                className={`hover:brightness-110 border ${product.textColor} ${product.bgColor} border-opacity-50`}
+              >
+                PEÇA O SEU!
+              </Button>
+            </Link>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
 }

@@ -9,7 +9,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="w-full bg-slate-950 shadow-md text-white">
+    <header className="w-full bg-slate-800 shadow-md text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Logo principal */}
         <div className="flex items-center gap-4">
